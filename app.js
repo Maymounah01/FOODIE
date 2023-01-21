@@ -9,8 +9,8 @@ const ApiError = require('./utilities/ApiError');
 require('dotenv').config()
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const authRouter = require('./routes/auth')
+const usersRouter = require('./routes/paystack.route');
+const authRouter = require('./routes/auth.route')
 const app = express();
 
 // view engine setup
