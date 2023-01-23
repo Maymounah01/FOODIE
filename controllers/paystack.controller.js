@@ -9,18 +9,19 @@ const paystack = axios.create({
   })
 
 const initialize = async function (req, res) {
+   console.log(process.env.PAYSTACK_SECRET_KEY)
     const {email, amount} = req.body;
     console.log(email, amount) 
   
     try {
-      const paystackResponse = await paystack.get('/transaction/initialize', {
+      const paystackResponse = await paystack.post('/transaction/initialize', {
         email,
         amount: `${amount*100}`
       });
       if(paystackResponse.data) return res.json(paystackResponse.data)
   
     } catch (error) {
-      return res.status(error.status).send(error)
+      return res.status(500).send(error)
     }
   };
 
@@ -45,7 +46,7 @@ const initialize = async function (req, res) {
       if (list.data) return res.json(list.data)
       
     }catch (error) {
-      return res.status(error.status).send(error)
+      return res.status(500).send(error)
     }
   };
 

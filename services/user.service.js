@@ -40,7 +40,7 @@ const getUserByEmail = async (email) => {
 const loginUserWithCredentials = async (email, password) => {
     const user = await getUserByEmail(email);
     if (!user || !(await isPasswordMatch(password, user.dataValues))) {
-        res.status(httpStatus.UNAUTHORIZED, 'Incorrect email or password');
+      throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect email or password');
     }
     return user;
 
